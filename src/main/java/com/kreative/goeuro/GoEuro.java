@@ -19,13 +19,17 @@ public class GoEuro {
     public static void main(String[] args) {
         HashSet<String> cities = new HashSet<>();
         CsvTemplate csv = new CsvTemplate();
-
+        csv.generate("berlin");
+        /*
         for (String aCity : args) {
             if (!aCity.isEmpty() && !cities.contains(aCity)) {
                 cities.add(aCity);
                 csv.generate(aCity);
             }
         }
+         */
+        
+        
     }
 
 }
