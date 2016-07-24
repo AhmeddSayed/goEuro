@@ -24,7 +24,7 @@ public class CsvTemplate {
 
     APICaller api = new APICaller();
     //CSV file header
-    private static final Object[] FILE_HEADER = {"_id", "name", "type", "geo_position"};
+    private static final Object[] FILE_HEADER = {"_id", "name", "type", "longitude", "latitude"};
 
     void generate(String aCity) {
         FileWriter fileWriter = null;
@@ -39,10 +39,9 @@ public class CsvTemplate {
                 ArrayList<String> cityData = new ArrayList<>();
                 for (Object key : FILE_HEADER) {
                     try {
-                        if (key.equals("geo_position")) {
-                            JSONObject geoPosition = (JSONObject) responce.get(key.toString());
-                            cityData.add(String.valueOf(geoPosition.get("longitude")));
-                            cityData.add(String.valueOf(geoPosition.get("latitude")));
+                        if (key.equals("longitude") || key.equals("latitude")) {
+                            JSONObject geoPosition = (JSONObject) responce.get("geo_position");
+                            cityData.add(String.valueOf(geoPosition.get(key.toString())));
                         } else {
                             cityData.add(String.valueOf(responce.get(key.toString())));
                         }
